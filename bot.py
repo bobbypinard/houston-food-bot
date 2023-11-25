@@ -1,6 +1,7 @@
 import discord
 import responses
 from config import TOKEN
+
 async def send_message(message, user_message, is_private):
     try:
         response = response.handle_response(user_message)
