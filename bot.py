@@ -30,3 +30,6 @@ def run_discord_bot():
         print(f"{username} said: '{user_message}' ({channel})")
 
     client.run(TOKEN)
+
+
+#test
