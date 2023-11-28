@@ -12,9 +12,7 @@ restaurants = ['Restaurant1', 'Cuisine1', 'Address1']
 
 def format(arr):
     output = ''
-    for restaurant, cuisine, address in arr:
-        output += '- ' + restaurant + ' - ' + cuisine + ' - ' + address + '\n'
-    output += ''
+    output += '- ' + arr['name'] + ', ' + arr['cuisine'] + ', ' + arr['address'] + '\n'
     return output
 
 @bot.event
@@ -34,7 +32,12 @@ async def add(interaction: discord.Interaction, restaurant: str, cuisine: str, a
 
 @bot.tree.command(name = "list", description = "List out all restaurants in the Houston foods database")
 async def list(interaction: discord.Interaction):
-    output = format(restaurants)
+    output = ''
+    restaurant_ids = db.get_documents()
+    for id in restaurant_ids:
+        restaurant = db.get_restaurant(id)
+        output += format(restaurant)
+    
     await interaction.response.send_message(output)
 
 bot.run(TOKEN)

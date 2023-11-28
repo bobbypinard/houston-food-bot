@@ -6,6 +6,7 @@ cred = credentials.Certificate(r"./firestore.json")
 firebase_admin.initialize_app(cred)
 
 db = firestore.client()
+doc_ref = db.collection('restaurants')
 
 def write(entry):
     data = {
@@ -14,7 +15,17 @@ def write(entry):
         'address': entry[2]
     }
 
-    doc_ref = db.collection('restaurants').document()
-    doc_ref.set(data)
+    doc_ref.document().set(data)
 
     print(f"Added {data['name']} as {doc_ref.id}")
+
+def get_documents():
+    ray = []
+    docs = doc_ref.stream()
+    for doc in docs:
+        ray.append(doc.id)
+    return ray
+
+def get_restaurant(doc):
+    restaurant = doc_ref.document(doc).get().to_dict()
+    return restaurant
