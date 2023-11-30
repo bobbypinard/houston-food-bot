@@ -1,3 +1,4 @@
+import time
 import firebase_admin
 from firebase_admin import credentials
 from firebase_admin import firestore
@@ -14,7 +15,7 @@ def write(entry):
         'cuisine': entry[1],
         'address': entry[2]
     }
-    document = doc_ref.document()
+    document = doc_ref.document(int(time.time()))
     document.set(data)
 
     print(f"Added {data['name']} as {document.id}")
