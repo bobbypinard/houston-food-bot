@@ -14,10 +14,10 @@ def write(entry):
         'cuisine': entry[1],
         'address': entry[2]
     }
+    document = doc_ref.document()
+    document.set(data)
 
-    doc_ref.document().set(data)
-
-    print(f"Added {data['name']} as {doc_ref.id}")
+    print(f"Added {data['name']} as {document.id}")
 
 def get_documents():
     ray = []
