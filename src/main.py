@@ -12,7 +12,7 @@ restaurants = ['Restaurant1', 'Cuisine1', 'Address1']
 
 def format(arr):
     output = ''
-    output += '- ' + arr['name'] + ' | ' + arr['cuisine'] + ' | ' + arr['address'] + '\n'
+    output += '- *' + arr['name'] + '* | ' + arr['cuisine'] + ' | ' + arr['address'] + '\n'
     return output
 
 @bot.event
