@@ -15,7 +15,7 @@ def write(entry):
         'cuisine': entry[1],
         'address': entry[2]
     }
-    document = doc_ref.document(int(time.time()))
+    document = doc_ref.document(str(time.time()))
     document.set(data)
 
     print(f"Added {data['name']} as {document.id}")

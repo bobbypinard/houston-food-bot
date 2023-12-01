@@ -1,5 +1,5 @@
 import hfb_firebase as db
-import discord
+import discord, asyncio
 from discord import app_commands
 from discord.ext import commands
 from config import TOKEN
@@ -32,6 +32,8 @@ async def add(interaction: discord.Interaction, restaurant: str, cuisine: str, a
 
 @bot.tree.command(name = "list", description = "List out all restaurants in the Houston foods database")
 async def list(interaction: discord.Interaction):
+    await interaction.response.defer()
+    await asyncio.sleep(1)
     output = ''
     restaurant_ids = db.get_documents()
     for id in restaurant_ids:
